@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  br
+  .container-fluid
+    .row.justify-content-center
+      .col-sm-12.col-md-6.col-lg-6
+        .card.border.border-info
+          h5.card-header เข้าสู่ระบบ
+          .card-body
+            form(action="/auth/login" method="post")
+              .form-group
+                i.material-icons account_circle 
+                label(for="username") ชื่อผู้ใช้
+                input#username.form-control(type="text" name="username" placeholder="กรุณาใส่ชื่อผู้ใช้")
+              .form-group
+                i.material-icons lock 
+                label(for="password") รหัสผ่าน
+                input#password.form-control(type="password" name="password" placeholder="กรุณาใส่รหัสผ่าน")
+                br
+                input.btn.btn-primary.float-right(type="submit" value="เข้าสู่ระบบ")
+    .row
+      .col-sm-12
+        h4 หรือล็อคอินด้วย
+        a.btn(href="/auth/google") Google
+        a.btn(href="/auth/facebook") Facebook
+      
+

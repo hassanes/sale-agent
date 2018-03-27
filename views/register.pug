@@ -1,0 +1,40 @@
+extends layout
+block content
+  br
+  .container-fluid
+    .row.justify-content-center
+      .col-sm-12.col-md-6.col-lg-6
+        .card
+          .card-header กรุณากรอกข้อมูลให้ครบถ้วน
+          .card-body
+            form(action="/users/register" method="post")
+              .form-row
+                .col
+                  label(for="firstname") ชื่อ
+                  input.form-control#firstname(type="text" name="firstname")
+                .col
+                  label(for="lastname") นามสกุล
+                  input.form-control#lastname(type="text" name="lastname")
+              .form-group
+                label(for="username") Username
+                input.form-control#username(type="text" name="username")
+              .form-group
+                label(for="password") Password
+                input.form-control#password(type="text" name="password")
+              .form-group
+                label(for="email") อีเมล์
+                input.form-control#email(type="text" name="email")
+              .form-group
+                label(for="facebook") ชื่อโปรไฟล์ของ Facebook
+                input.form-control#facebook(type="text" name="facebook")
+              .form-group
+                i.material-icons.socicon-line
+                label(for="line") &nbsp Line ID
+                input.form-control#line(type="text" name="line")
+              .form-group
+                label(for="instagram") Instagram
+                input.form-control#instagram(type="text" name="instagram")
+              // .form-group
+                label(for="profile_image") รูปภาพโปรไฟล์
+                input.form-control-file#profile_image(type="file" name="profile_image")
+              input.btn.btn-primary.float-right(type="submit" value="สมัครเป็นตัวแทน")

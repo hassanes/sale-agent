@@ -1,8 +1,12 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Kanit', sans-serif !important;
 }
 
 a {
   color: #00B7FF;
+}
+
+.thumnail-card-padding {
+  padding-bottom: 10px;
+  padding-left: 10px;
 }
