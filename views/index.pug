@@ -7,7 +7,8 @@ block content
     each val in users
       .row
         .col-md-2.col-sm-12
-          img.img-thumbnail.rounded.border-0(src="uploads/user-profile-default.png", alt="", srcset="")
+          - var img= val.image_path
+          img.img-thumbnail.rounded.border-0(src=img alt="" srcset="")
         .col-md-10.col-sm-12.align-self-center
           .card.border.border-info
             .card-body
@@ -15,13 +16,13 @@ block content
               .card-text
                 .row
                   .col-md-4.col-sm-12
-                    i.material-icons.socicon-facebook 
+                    i.material-icons: img(src="https://png.icons8.com/color/50/000000/facebook.png")
                     span  #{val.social_media.facebook}
                   .col-md-3.col-sm-12
-                    i.material-icons.socicon-line 
+                    i.material-icons: img(src="https://png.icons8.com/color/50/000000/line-me.png")
                     span  #{val.social_media.line}
                   .col-md-3.col-sm-12
-                    i.material-icons.socicon-instagram 
+                    i.material-icons: img(src="https://png.icons8.com/color/50/000000/instagram-new.png")
                     span  #{val.social_media.instagram}
                   .col-md-2.col-sm-12
                     a.btn.btn-info.float-right(href="http://") ดูบัตรตัวแทน

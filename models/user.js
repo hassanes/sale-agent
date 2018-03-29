@@ -2,17 +2,15 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const AddressSchema = new Schema({
-  street: String,
-  state: String,
+  district: String,
   province: String,
-  postcode: String,
-  country: String
 });
 
 const SocialMediaSchema = new Schema({
   facebook: String,
   line: String,
-  instagram: String
+  instagram: String,
+  google_id: String
 })
 
 const UserSchema = new Schema({
@@ -23,11 +21,10 @@ const UserSchema = new Schema({
   password: String,
   email: String,
   image_path: String,
-  google_id: String,
   privilege: String,
+  approved: String,
   social_media: SocialMediaSchema,
   address: AddressSchema
-
 });
 
 

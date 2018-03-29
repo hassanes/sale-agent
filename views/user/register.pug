@@ -1,4 +1,4 @@
-extends layout
+extends ../layout
 block content
   br
   .container-fluid
@@ -16,25 +16,27 @@ block content
                   label(for="lastname") นามสกุล
                   input.form-control#lastname(type="text" name="lastname")
               .form-group
-                label(for="username") Username
+                i.material-icons account_circle 
+                label(for="username") &nbsp Username
                 input.form-control#username(type="text" name="username")
               .form-group
-                label(for="password") Password
+                i.material-icons lock 
+                label(for="password") &nbsp Password
                 input.form-control#password(type="text" name="password")
               .form-group
-                label(for="email") อีเมล์
+                i.material-icons email 
+                label(for="email") &nbsp อีเมล์
                 input.form-control#email(type="text" name="email")
               .form-group
-                label(for="facebook") ชื่อโปรไฟล์ของ Facebook
+                i.material-icons.socicon-facebook 
+                label(for="facebook") &nbsp ชื่อโปรไฟล์ของ Facebook
                 input.form-control#facebook(type="text" name="facebook")
               .form-group
-                i.material-icons.socicon-line
+                i.material-icons.socicon-line 
                 label(for="line") &nbsp Line ID
                 input.form-control#line(type="text" name="line")
               .form-group
-                label(for="instagram") Instagram
+                i.materail-icons.socicon-instagram
+                label(for="instagram") &nbsp Instagram
                 input.form-control#instagram(type="text" name="instagram")
-              // .form-group
-                label(for="profile_image") รูปภาพโปรไฟล์
-                input.form-control-file#profile_image(type="file" name="profile_image")
               input.btn.btn-primary.float-right(type="submit" value="สมัครเป็นตัวแทน")

@@ -1,0 +1,140 @@
+extends ../layout
+block content
+  br
+  .container
+    .row
+      .col-md-3.col-sm-12
+        .row
+          h4 รูปภาพโปรไฟล์
+        .row
+          - var img= user.image_path
+          img.img-thumbnail.rounded.border-0(src=img alt="" srcset="")
+        .row.py-3
+          form#change_img(action="/user/profile/change_img", method="post" enctype="multipart/form-data")
+            form-group
+              label(for="profile_image") เปลื่ยนรูปภาพโปรไฟล์
+              input#profile_image.form-control-file.pb-3(type="file" name="profile_image")
+            img#preview.img-thumbnail.rounded.border-0(src="#", alt="", srcset="")
+            input.btn.btn-primary.btn-sm.float-right.mt-3(type="submit" value="เปลื่ยนรูปภาพตัวแทน")
+      .col-md-6.col-sm-12.pl-5#info
+        .row
+          h4 ข้อมูลส่วนตัว
+        .row.pl-4
+          p ชื่อ #{user.firstname} นามสกุล #{user.lastname} ชื่อเล่น #{user.nickname}
+        .row.pl-4
+          p อีเมล์ #{user.email}
+        .row.pl-4
+        .row
+          h4 ข้อมูลติดต่อ และ Social network
+        .row.pl-4
+          i.material-icons.socicon-facebook
+          p &nbsp Facebook : &nbsp
+          span #{user.social_media.facebook}
+        .row.pl-4
+          i.material-icons.socicon-line 
+          p &nbsp Line : &nbsp
+          span #{user.social_media.line}
+        .row.pl-4
+          i.material-icons.socicon-instagram 
+          p &nbsp Instagram : &nbsp
+          span  #{user.social_media.instagram}
+        .row
+          h4 ข้อมูลที่อยู่
+        .row.pl-4
+          if user.address.district== '-'
+            p อำเภอ: **คุณยังไม่ได้ใส่ข้อมูล
+          else
+            p อำเภอ: #{user.address.district}
+        .row.pl-4
+          if user.address.province== '-'
+            p จังหวัด: **คุณยังไม่ได้ใส่ข้อมูล
+          else
+            p จังหวัด: #{user.address.province}
+        input.btn.btn-primary.btn-sm.float-right.mt-3#edit_info(type="button", value="แก้ไขข้อมูล")
+      .col-md-6.col-sm-12.pl-4#form_edit_info
+        form(action="/user/profile/editinfo" method="post")
+          .row
+            h4 ข้อมูลส่วนตัว
+          .row
+            .col-sm-6
+              .form-group.row
+                label.col-sm-2.col-form-label(for="firstname") ชื่อ
+                .col-sm-10
+                  - var firstname= user.firstname
+                  input.form-control.form-control-sm(type="text", name="firstname" value=firstname)
+            .col-sm-6
+              .form-group.row
+                label.col-sm-3.col-form-label(for="lastname") นามสกุล
+                .col-sm-9
+                  - var lastname= user.lastname
+                  input.form-control.form-control-sm(type="text", name="lastname" value=lastname)
+          .row
+            .col-sm-7
+              .form-group.row
+                label.col-sm-2.col-form-label(for="email") อีเมล์
+                .col-sm-10
+                  - var email= user.email
+                  input.form-control.form-control-sm(type="text", name="email" value=email)
+            .col-sm-5
+              .form-group.row
+                label.col-sm-4.col-form-label(for="nickname") ชื่อเล่น
+                .col-sm-8
+                  - var nickname= user.nickname
+                  input.form-control.form-control-sm(type="text", name="nickname" value=nickname)
+          .row
+            h4 ข้อมูลติดต่อ และ Social network
+          .form-group.row
+            .col-sm-3
+              i.material-icons.socicon-facebook
+              label.col-form-label(for="facebook") &nbsp Facebook
+            .col-sm-8
+              - var facebook= user.social_media.facebook
+              input.form-control.form-control-sm(type="text", name="facebook" value=facebook)
+          .form-group.row
+            .col-sm-3
+              i.material-icons.socicon-line
+              label.col-form-label(for="line") &nbsp line
+            .col-sm-8
+              - var line= user.social_media.line
+              input.form-control.form-control-sm(type="text", name="line" value=line)
+          .form-group.row
+            .col-sm-3
+              i.material-icons.socicon-instagram
+              label.col-form-label(for="instagram") &nbsp Instagram
+            .col-sm-8
+              - var instagram= user.social_media.instagram
+              input.form-control.form-control-sm(type="text", name="instagram" value=instagram)
+          .row
+            h4 ข้อมูลที่อยู่
+          .form-group.row.pl-4
+            label.col-form-label.col-sm2(for="district") อำเภอ
+            .col-sm-8
+              - var district= user.address.district
+              input.form-control.form-control-sm(type="text", name="district" value=district)
+          .form-group.row.pl-4
+            label.col-form-label.col-sm2(for="province") จังหวัด
+            .col-sm-8
+              - var province= user.address.province
+              input.form-control.form-control-sm(type="text", name="province" value=province)
+          .row.justify-content-end
+            input.btn.btn-danger.btn-sm.mr-3#cancel_edit_info(type="button", value="ยกเลิก")
+            input.btn.btn-primary.btn-sm#edit_info(type="submit", value="ยืนยัน")
+        br
+      .col-md-3.col-sm-12
+        .row
+          h4 บัตรตัวแทน
+        .row
+          img.img-thumbnail.rounded(src="uploads/user-profile-default.png", alt="", srcset="")
+        .row
+          if user.approved== 'waiting'
+            - var approved= 'กำลังรอผล'
+          else if user.approved== 'yes'
+            - var approved= 'อนุมัติแล้ว'
+          else if user.approved== 'no'
+            - var approved= 'ไม่อนุมัติ'
+          p สถานะการอนุมัติ : #{approved}
+                        
+          
+            
+  // h1 Welcome to your profile #{user.username}
+  // h2: a.btn(href="/auth/logout") Logout
