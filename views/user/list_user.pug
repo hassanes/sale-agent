@@ -1,0 +1,46 @@
+extends ../layout
+block content
+  .container-fluid
+    br
+    h2 รายชื่อผู้สมัครเป็นตัวแทนการขาย
+    table.table.table-hover
+      thead
+        tr.table-primary
+          th(scope="col") ลำดับที่
+          th(scope="col") ชื่อผู้ใช้
+          th(scope="col") รหัสผ่าน
+          th(scope="col") ชื่อ
+          th(scope="col") นามสกุล
+          th(scope="col") จังหวัด
+          th(scope="col") สิทธิ
+          th(scope="col") การอนุญาติ
+          th(scope="col") ดำเนินการ
+        thead
+        tbody
+        // script
+          include /javascripts/list_users.js
+        each val, index in users
+          - var user_id = val.id
+          form#user_list_form(action="/user/profile/"+user_id, method="post")
+            tr
+              th(scope="row")= index
+              td #{val.username}
+              td #{val.password}
+              td #{val.firstname}
+              td #{val.lastname}
+              td #{val.address.province}
+              if val.privilege== 'user'
+                - var privilege= 'ผู้ใช้งาน'
+              else if val.privilege== 'admin'
+                - var privilege= 'แอดมิน'
+              td= privilege
+              td
+                .form-group
+                  select#approved.form-control.form-control-sm(name="approved")
+                    option(selected="selected") #{val.approved}
+                    option(value="yes") yes
+                    option(value="no") no
+              td 
+                button.btn.btn-outline-success.btn-sm.mx-1(id=user_id type="submit" name="input_btn" value="update"): img(src="https://png.icons8.com/office/16/000000/checkmark.png")
+                button.btn.btn-outline-primary.btn-sm.mx-1(type="submit" name="input_btn" value="view_profile"): img(src="https://png.icons8.com/office/16/000000/edit-file.png")
+                button.btn.btn-outline-danger.btn-sm.mx-1(type="submit" name="input_btn" value="delete"): img(src="https://png.icons8.com/office/16/000000/delete-sign.png")

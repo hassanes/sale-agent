@@ -1,5 +1,7 @@
 extends ../layout
 block content
+  script(src="/javascripts/canvas-to-blob.min.js")
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.2.2/fabric.min.js")
   br
   .container
     .row
@@ -8,7 +10,7 @@ block content
           h4 รูปภาพโปรไฟล์
         .row
           - var img= user.image_path
-          img.img-thumbnail.rounded.border-0(src=img alt="" srcset="")
+          img#user_image.img-thumbnail.rounded.border-0(src=img alt="" srcset="")
         .row.py-3
           form#change_img(action="/user/profile/change_img", method="post" enctype="multipart/form-data")
             form-group
@@ -122,10 +124,6 @@ block content
         br
       .col-md-3.col-sm-12
         .row
-          h4 บัตรตัวแทน
-        .row
-          img.img-thumbnail.rounded(src="uploads/user-profile-default.png", alt="", srcset="")
-        .row
           if user.approved== 'waiting'
             - var approved= 'กำลังรอผล'
           else if user.approved== 'yes'
@@ -133,8 +131,15 @@ block content
           else if user.approved== 'no'
             - var approved= 'ไม่อนุมัติ'
           p สถานะการอนุมัติ : #{approved}
-                        
-          
-            
-  // h1 Welcome to your profile #{user.username}
-  // h2: a.btn(href="/auth/logout") Logout
+    .row.justify-content-center
+      h4 บัตรตัวแทน
+    .row.justify-content-center
+      canvas#card(width="768" height="432")
+      br
+    .row.justify-content-center
+      input.btn.btn-primary.btn-sm#download_card(type="", value="ดาวน์โหลด")
+      br
+      script.                                            
+        var user =!{JSON.stringify(user)};
+      script
+        include /javascripts/generate_card.js

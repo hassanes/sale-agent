@@ -25,7 +25,6 @@ block content
                     i.material-icons: img(src="https://png.icons8.com/color/50/000000/instagram-new.png")
                     span  #{val.social_media.instagram}
                   .col-md-2.col-sm-12
-                    a.btn.btn-info.float-right(href="http://") ดูบัตรตัวแทน
-    // h1= title
-    // p Welcome to #{title}
+                    - var user_id = val.id
+                    a.btn.btn-info.float-right(href="/showcard/" + user_id) ดูบัตรตัวแทน
 

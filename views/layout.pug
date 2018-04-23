@@ -4,11 +4,12 @@ html
     title= title
     meta(charset="utf-8")
     meta(name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover")
-    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=Kanit")
-    link(rel="stylesheet", href="/stylesheets/style.css")
-    link(rel="stylesheet", href="https://fonts.googleapis.com/icon?family=Material+Icons")
-    <link rel="stylesheet" href="https://d1azc1qln24ryf.cloudfront.net/114779/Socicon/style-cf.css?u8vidh">
-    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js")
+    link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kanit")
+    link(rel="stylesheet" href="/stylesheets/style.css")
+    link(rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons")
+    link(rel="stylesheet" href="https://d1azc1qln24ryf.cloudfront.net/114779/Socicon/style-cf.css?u8vidh")
+    link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css")
   body
     nav.navbar.navbar-expand-lg.navbar-light.bg-light
       a.navbar-brand(href="/")
@@ -23,13 +24,12 @@ html
               li.nav-item: a.nav-link(href="/user/profile") บัญชีของ#{user.firstname}
               li.nav-item: a.nav-link.btn.btn-danger.text-white(href="/auth/logout") ออกจากระบบ
             else if user.privilege== 'admin'
-              li.nav-item: a.nav-link(href="/user/admin") หน้าการจัดการ
+              li.nav-item: a.nav-link(href="/user/list-users") หน้าการจัดการ
               li.nav-item: a.nav-link.btn.btn-danger.text-white(href="/auth/logout") ออกจากระบบ
           else
             li.nav-item.active: a.nav-link(href="/user/register") สมัครเป็นตัวแทน
             li.nav-item: a.nav-link.btn.btn-success.text-white(href="/auth/login") เข้าสู่ระบบ
     block content
-    script(src="https://code.jquery.com/jquery-3.2.1.min.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js")
     script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js")
     script(src="/javascripts/main.js")

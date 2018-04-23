@@ -1,5 +1,6 @@
 var express = require('express');
 var path = require('path');
+var pug = require('pug');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -37,6 +38,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/user', express.static(path.join(__dirname, 'public')));
+app.use('/showcard', express.static(path.join(__dirname, 'public')));
+app.locals.basedir = path.join(__dirname, 'public');
 
 // set up cookie
 app.use(cookieSession({
