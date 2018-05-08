@@ -27,7 +27,7 @@ var firstname = new fabric.Text("ชื่อ :" + user.firstname, {
 });
 canvas.add(firstname);
 
-var lastname = new fabric.Text("นามสกุล :" +user.lastname, {
+var lastname = new fabric.Text("นามสกุล :" + user.lastname, {
   left: 400,
   top: 140,
   fontFamily: "Kanit",
@@ -77,12 +77,19 @@ var instagram = new fabric.Text("Instagram : " + user.social_media.instagram, {
 });
 canvas.add(instagram);
 
-$("#download_card").click(function() {
 
+$("#download_card").click(function() {
+  console.log("Click download");
+  var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+  window.location.href=image;
+  
+  /*
   canvas.toBlob(function(blob) {
       var formData = new FormData();
       formData.append("file", blob, "file.jpeg");
   }, "image/jpeg");
+  */
+
 
 });
 

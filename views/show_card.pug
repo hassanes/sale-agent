@@ -1,16 +1,15 @@
 extends layout
 block content
-  script(src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.2.2/fabric.min.js")
-  script(src="/javascripts/canvas-to-blob.min.js")
   script(src="/javascripts/FileSaver.js")
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/2.2.2/fabric.min.js")
+  br
   .row.justify-content-center
-      h4 บัตรตัวแทน
+      h2 บัตรตัวแทน
   .row.justify-content-center
     canvas#card(width="768" height="432")
-    br
+  br
   .row.justify-content-center
-    input.btn.btn-primary.btn-sm#download_card(type="", value="ดาวน์โหลด")
-    br
+    input.btn.btn-primary.btn-sm#download_card(type="submit", value="ดาวน์โหลด")
     script.                                            
       var user =!{JSON.stringify(user)};
     script
